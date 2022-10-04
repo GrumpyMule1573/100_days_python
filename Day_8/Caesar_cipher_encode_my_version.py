@@ -9,7 +9,7 @@ def encrypt(text, shift):
 	to_encrypt = text
 	to_encrypt_index = []
 	shift = int(shift)
-	encrypted = []
+	encrypted = ""
 
 # grab alphabet indices of the word
 # this matches the given word letter with the letter in alphabet and appends index number
@@ -22,8 +22,8 @@ def encrypt(text, shift):
 		plus_shift = int(new_index) + shift
 		if plus_shift > 25:
 			plus_shift -= 26
-		encrypted.append(alphabet[plus_shift])
+		encrypted += alphabet[plus_shift]
 	
-	print(encrypted)
+	print(f"The encrypted message is {encrypted})
     
 encrypt("hello",5)
