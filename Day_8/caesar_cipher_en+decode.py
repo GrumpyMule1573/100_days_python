@@ -24,13 +24,13 @@ def encrypt(plain_text, shift_amount):
 	
 	print(f"The encrypted message is {encrypted}")
   
-def decrypt(plain_text, shift_amount):
+def decrypt(cipher_text, shift_amount):
 	to_decrypt_index = []
 	decrypted = ""
 	
 	# grab alphabet indices of the word
 	# this matches the given word letter with the letter in alphabet and appends index number
-	for letter in plain_text:
+	for letter in cipher_text:
 		to_decrypt_index.append(alphabet.index(letter))
 	
 	# create the shifted index - negative indexes are valid
