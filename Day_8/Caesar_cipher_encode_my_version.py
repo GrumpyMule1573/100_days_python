@@ -12,12 +12,12 @@ def encrypt(text, shift):
 	encrypted = []
 
 # grab alphabet indices of the word
+# this matches the given word letter with the letter in alphabet and appends index number
 	for letter in to_encrypt:
-		for letter2 in alphabet:
-			if letter == letter2:
-				to_encrypt_index.append(alphabet.index(letter2))
+		to_encrypt_index.append(alphabet.index(letter))
 
 # create the shifted index - if > 25, -26 to get back to index[0]
+# appends the letter found at the new index to encrypted
 	for new_index in to_encrypt_index:
 		plus_shift = int(new_index) + shift
 		if plus_shift > 25:
