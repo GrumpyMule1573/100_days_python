@@ -44,8 +44,6 @@ def player_pick():
 				print(f"You drew cards {player_cards} totalling {player_total}.")
 # return final player total when not bust
 		else:
-			player_continue = False
-			print(f"You drew cards {player_cards} totalling {player_total}")
 			return player_total, player_cards
 			
 # print statements only needed for testing
@@ -84,8 +82,6 @@ def dealer_pick():
 
 ## return final dealer total when not bust
 		else:
-			dealer_continue = False
-#			print(f"Dealer drew cards {dealer_cards} totalling {dealer_total}. 6")
 			return dealer_total, dealer_cards
 
 
