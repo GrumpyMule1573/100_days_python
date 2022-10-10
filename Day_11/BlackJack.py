@@ -87,28 +87,28 @@ def dealer_pick():
 
 def who_wins():
 	print(logo)
-	dealer_details = dealer_pick()
-	print(f"Dealer's first card is {dealer_details[1][0]}.")
-	player_details = player_pick()
-  ## player > 21
-	if player_details[0] > 21:
-## player and dealer > 21
-		if dealer_details[0] > 21:
-			print(f"You are bust with {player_details[0]} and dealer is bust with {dealer_details[0]}, it's a draw.")
-## player > 21, dealer not bust
+	keep_playing = True
+	while keep_playing:
+		dealer_details = dealer_pick()
+		print(f"Dealer's first card is {dealer_details[1][0]}.")
+		player_details = player_pick()
+		if player_details[0] > 21:
+			if dealer_details[0] > 21:
+				print(f"You are bust with {player_details[0]} and dealer is bust with {dealer_details[0]}, it's a draw.")
+			else:
+				print(f"You are bust with a score of {player_details[0]} and dealer score is {dealer_details[0]}, dealer wins.")
+		elif dealer_details[0] > 21:
+			print(f"Your score is {player_details[0]} and dealer is bust with {dealer_details[0]}, you win!")
+		elif player_details[0] > dealer_details[0]:
+			print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, you win!")
+		elif player_details[0] == dealer_details[0]:
+			print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, it's a draw.")
 		else:
-			print(f"You are bust with a score of {player_details[0]} and dealer score is {dealer_details[0]}, dealer wins.")
-## player not bust, dealer > 21
-	elif dealer_details[0] > 21:
-		print(f"Your score is {player_details[0]} and dealer is bust with {dealer_details[0]}, you win!")
-## player score over dealer score
-	elif player_details[0] > dealer_details[0]:
-		print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, you win!")
-## player score = dealer score
-	elif player_details[0] == dealer_details[0]:
-		print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, it's a draw.")
-## dealer score over player score
-	else:
-		print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, dealer wins.")
+			print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, dealer wins.")
+		if input("Would you like to play again? y/n ") == "y":
+			print("\nNEW GAME!!!\n")
+		else:
+			print("\nThanks for playing!")
+			keep_playing = False
 
 who_wins()
