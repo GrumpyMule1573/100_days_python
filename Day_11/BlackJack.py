@@ -19,32 +19,34 @@ def player_pick():
 		player_total = sum(player_cards)
 	print(f"Your cards are {player_cards[0]} and {player_cards[1]} totalling {player_total}.")
 	while player_continue:
-		if player_total == 21:
+		if player_total == 21 and len(player_cards) == 2:
 			print(f"You drew cards {player_cards} totalling {player_total}. BlackJack!")
 			return player_total, player_cards
-		elif input("Would you like to chose another card? y/n ") == "y":
-			player_cards.append(pick_card())
-			player_total = sum(player_cards)
-# adjust aces from 11 to 1 if total > 21
-			if 11 in player_cards and player_total > 21:
-				ace_index = player_cards.index(11)
-				player_cards[ace_index] = 1
+		elif player_total == 21:
+			print(f"You have {player_total}, stop drawing cards!")
+			return player_total, player_cards
+		else:
+			another_card = input("Would you like to chose another card? y/n ")
+			if another_card == "y":
+				player_cards.append(pick_card())
 				player_total = sum(player_cards)
-				if player_cards[-1] == 11 and player_total > 21:
-					player_cards[-1] = 1
+	# adjust aces from 11 to 1 if total > 21
+				if 11 in player_cards and player_total > 21:
+					ace_index = player_cards.index(11)
+					player_cards[ace_index] = 1
 					player_total = sum(player_cards)
 					print(f"You drew cards {player_cards} totalling {player_total}.")
+	# bust if >21 and no aces, return total
+				elif player_total > 21:
+					print(f"You drew cards {player_cards} totalling {player_total}. You are bust!")
+					return player_total, player_cards
 				else:
 					print(f"You drew cards {player_cards} totalling {player_total}.")
-# bust if >21 and no aces, return total
-			elif player_total > 21:
-				print(f"You drew cards {player_cards} totalling {player_total}. You are bust!")
+	# return final player total when not bust
+			elif another_card == "n":
 				return player_total, player_cards
 			else:
-				print(f"You drew cards {player_cards} totalling {player_total}.")
-# return final player total when not bust
-		else:
-			return player_total, player_cards
+				print("Please choose y/n")
 			
 # print statements only needed for testing
 def dealer_pick():
