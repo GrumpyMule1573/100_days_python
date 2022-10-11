@@ -110,5 +110,15 @@ def who_wins():
 		else:
 			print("\nThanks for playing!")
 			keep_playing = False
+		wanna_play = ""
+		while (wanna_play != "n") and (wanna_play != "y"):
+			wanna_play = input("Would you like to play again? y/n ")
+			if wanna_play == "y":
+				print("\nNEW GAME!!!\n")
+			elif wanna_play == "n":
+				print("\nThanks for playing!")
+				keep_playing = False
+			else:
+				print("Please enter a valid response.")
 
 who_wins()
