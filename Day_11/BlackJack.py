@@ -87,38 +87,57 @@ def dealer_pick():
 			return dealer_total, dealer_cards
 
 
-def who_wins():
-	print(logo)
+def guess_the_number():
+	"""Player guesses the number"""
 	keep_playing = True
 	while keep_playing:
-		dealer_details = dealer_pick()
-		print(f"Dealer's first card is {dealer_details[1][0]}.")
-		player_details = player_pick()
-		if player_details[0] > 21:
-			if dealer_details[0] > 21:
-				print(f"You are bust with {player_details[0]} and dealer is bust with {dealer_details[0]}, it's a draw.")
+		print(logo)
+		computer_number = number_to_guess()
+		difficulty = difficulty_choice()
+		user_guesses = 0	
+	## set number of guesses
+		if difficulty == "hard":
+			user_guesses = 5
+			print(hard_choice)
+			art_guesses_left(user_guesses)
+		else:
+			user_guesses = 10
+			print(easy_choice)
+			art_guesses_left(user_guesses)
+	
+		the_guess = user_guess()		
+	## assess how close user is to number
+		while user_guesses > 1:
+			if the_guess < computer_number:
+				user_guesses -= 1			
+				print("Too low! Guess again.")
+				hot_or_cold(the_guess, computer_number)
+				art_guesses_left(user_guesses)
+				the_guess = user_guess()
+			elif the_guess > computer_number:
+				user_guesses -= 1
+				print("Too high! Guess again.")
+				hot_or_cold(the_guess, computer_number)
+				art_guesses_left(user_guesses)
+				the_guess = user_guess()
 			else:
-				print(f"You are bust with a score of {player_details[0]} and dealer score is {dealer_details[0]}, dealer wins.")
-		elif dealer_details[0] > 21:
-			print(f"Your score is {player_details[0]} and dealer is bust with {dealer_details[0]}, you win!")
-		elif player_details[0] > dealer_details[0]:
-			print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, you win!")
-		elif player_details[0] == dealer_details[0]:
-			print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, it's a draw.")
+				user_guesses = 0
+				print(winner)
+				print(f"You guessed the number {the_guess} correctly! You win!")
+		if computer_number != the_guess:
+			print(loser)
+			print(f"You ran out of guesses! The computer number was {computer_number}")
 		else:
-			print(f"Your score is {player_details[0]} and dealer score is {dealer_details[0]}, dealer wins.")
-		if input("Would you like to play again? y/n ") == "y":
-			print("\nNEW GAME!!!\n")
-		else:
-			print("\nThanks for playing!")
-			keep_playing = False
-		wanna_play = ""
-		while (wanna_play != "n") and (wanna_play != "y"):
-			wanna_play = input("Would you like to play again? y/n ")
-			if wanna_play == "y":
-				print("\nNEW GAME!!!\n")
-			elif wanna_play == "n":
-				print("\nThanks for playing!")
+			print(winner)
+			print(f"You guessed the number {the_guess} correctly! You win!")
+		are_you_playing = ""
+	## ask if the player wants to play again
+		while are_you_playing != "y" and are_you_playing != "n":
+			are_you_playing = input("Would you like to play again? y/n ")
+			if are_you_playing == "y":
+				os.system("clear")
+			elif are_you_playing == "n":
+				print("Thank you for playing!")
 				keep_playing = False
 			else:
 				print("Please enter a valid response.")
