@@ -55,6 +55,7 @@ def guess_the_number():
 	while keep_playing:
 		print(logo)
 		computer_number = number_to_guess()
+#		print(f"computer number is {computer_number}")
 		difficulty = difficulty_choice()
 		user_guesses = 0	
 	## set number of guesses
@@ -84,9 +85,8 @@ def guess_the_number():
 				art_guesses_left(user_guesses)
 				the_guess = user_guess()
 			else:
-				user_guesses = 0
-				print(winner)
-				print(f"You guessed the number {the_guess} correctly! You win!")
+				break
+
 		if computer_number != the_guess:
 			print(loser)
 			print(f"You ran out of guesses! The computer number was {computer_number}")
@@ -103,7 +103,6 @@ def guess_the_number():
 				keep_playing = False
 			else:
 				print("Please enter a valid response.")
-
 
 
 guess_the_number()
