@@ -36,13 +36,13 @@ def player_choice():
 ## comparison print and ask for guess
 		print(f"Compare A: {stats_A['name']}, a {stats_A['description']} from {stats_A['country']}.")
 		print(vs)
-		print(f"With B: {stats_B['name']}, a {stats_B['description']} from {stats_B['country']}.")
+		print(f"With B: {stats_B['name']}, a {stats_B['description']} from {stats_B['country']}.\n")
 		player_guess = guess()
 		guesses += 1
 		if player_guess == "A":
-			print(f"Your guess is that {stats_A['name']} has more followers.")
+			print(f"\nYour guess is that {stats_A['name']} has more followers.\n")
 		else:
-			print(f"Your guess is that {stats_B['name']} has more followers.")
+			print(f"\nYour guess is that {stats_B['name']} has more followers.\n")
 
 ## check if correct
 		if player_guess == "A" and stats_A['follower_count'] > stats_B['follower_count']:
@@ -63,8 +63,6 @@ def player_choice():
 				os.system('clear')
 				player_choice()
 			else:
-				print("i am printing when I shouldn't")				
-				correct = False
 				return
 				
 			
@@ -99,6 +97,6 @@ def check_same(stats_A, stats_B):
 
 			
 #choose()
-#player_choice()
+player_choice()
 #check_same({'name': 'cat'},{'name':'cat'})
 #play_again()
