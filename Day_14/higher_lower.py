@@ -8,7 +8,7 @@ import os
 ## choose random selection from data
 def choose():
 	random_choice = random.choice(data)
-	return data[random_choice]
+	return random_choice
 
 ## play the game
 def player_choice():
@@ -45,25 +45,25 @@ def player_choice():
 			print(f"\nYour guess is that {stats_B['name']} has more followers.\n")
 
 ## check if correct
-		if player_guess == "A" and stats_A['follower_count'] > stats_B['follower_count']:
-			print(f"Correct! {stats_A['name']} has more followers.")
-			print(f"Your score is {guesses}.\n")
-		elif player_guess == "B" and stats_A['follower_count'] < stats_B['follower_count']:
-			print(f"Correct! {stats_B['name']} has more followers.")
+		correct_choice = check_answer(player_guess, stats_A, stats_B)
+		if correct_choice[1] == "correct":
+			print(f"Correct! {correct_choice[0]} has more followers.")
 			print(f"Your score is {guesses}.\n")
 		else:
 			final_score = guesses -1
 			print(f"Incorrect guess! Your final score is {final_score}")
-			play_option = play_again()
-			if play_option == "N":
-				print("Thanks for playing!")
-				correct = False
-				return
-			elif play_option == "Y":
-				os.system('clear')
-				player_choice()
-			else:
-				return
+			correct = False
+
+## check if want to play again
+	play_option = play_again()
+	if play_option == "N":
+		print("Thanks for playing!")
+		return
+	elif play_option == "Y":
+		os.system('clear')
+		player_choice()
+	else:			
+		return
 				
 			
 		
@@ -92,6 +92,16 @@ def check_same(stats_A, stats_B):
 	while stats_A['name'] == stats_B['name']:
 		print("same array")
 		stats_B = choose()
+
+## check answer
+def check_answer(player_guess, stats_A, stats_B):
+	if player_guess == "A" and stats_A['follower_count'] > stats_B['follower_count']:
+		return stats_A['name'], "correct"
+	elif player_guess == "B" and stats_A['follower_count'] < stats_B['follower_count']:
+		return stats_B['name'], "correct"
+	else:
+		return "unknown", "incorrect"
+
 			
 
 
