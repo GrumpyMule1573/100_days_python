@@ -7,7 +7,7 @@ import os
 
 ## choose random selection from data
 def choose():
-	random_choice = random.randint(0, len(data)-1)
+	random_choice = random.choice(data)
 	return data[random_choice]
 
 ## play the game
