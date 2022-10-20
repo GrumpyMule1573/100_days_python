@@ -54,16 +54,51 @@ def player_choice():
 		else:
 			final_score = guesses -1
 			print(f"Incorrect guess! Your final score is {final_score}")
-			play_option = play_again().upper()
+			play_option = play_again()
 			if play_option == "N":
 				print("Thanks for playing!")
 				correct = False
-				print(correct)
-				break
+				return
 			elif play_option == "Y":
 				os.system('clear')
 				player_choice()
 			else:
-				print("i am printing when I shouldn't")
-				break
+				print("i am printing when I shouldn't")				
 				correct = False
+				return
+				
+			
+		
+## player guess		
+def guess():
+	valid_guess = False
+	while not valid_guess:
+		the_guess = input("Who has more followers? Type 'A' or 'B': ").upper()
+		if the_guess == "A" or the_guess == "B":
+			return the_guess			
+		else:
+			print("Please enter a valid guess: 'A' or 'B': ")
+
+## play again
+def play_again():
+	valid_answer = False
+	while not valid_answer:
+		play_again = input("Would you like to play again? Y or N: ").upper()
+		if play_again == "Y" or play_again == "N":
+			return play_again
+		else:
+			print("Please enter a valid answer: 'Y' or 'N': ")
+
+## check whether stats_A and stats_B are the same 
+def check_same(stats_A, stats_B):
+	while stats_A['name'] == stats_B['name']:
+		print("same array")
+		stats_B = choose()
+			
+
+
+			
+#choose()
+#player_choice()
+#check_same({'name': 'cat'},{'name':'cat'})
+#play_again()
